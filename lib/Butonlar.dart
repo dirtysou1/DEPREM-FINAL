@@ -499,8 +499,8 @@ class _ButonlarState extends State<Butonlar> {
 
                   advancedPlayer.stop();
                   advancedPlayer.dispose();
-                  //Navigator.of(context).push(MaterialPageRoute(
-                    //  builder: (BuildContext context) => GvendeBildirim()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => GvendeBildirim()));
                 },
                 child: Text(''),
               ),
@@ -553,8 +553,8 @@ class _ButonlarState extends State<Butonlar> {
 
                   //addData();
                   NumaraCek();
-                 // Navigator.of(context).push(MaterialPageRoute(
-                      //builder: (BuildContext context) => YardmBildirim()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => YardmBildirim()));
                 },
                 child: Text(''),
               ),
