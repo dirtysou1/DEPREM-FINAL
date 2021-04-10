@@ -1,14 +1,18 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
 import 'package:homescreen/Butonlar.dart';
 import 'package:homescreen/main.dart';
 import 'package:homescreen/plugins_utils/Location.dart';
+import 'package:telephony/telephony.dart';
 
 class Component91 extends StatelessWidget {
   Component91({
     Key key,
   }) : super(key: key);
   LocationService loca1 = new LocationService();
+  final Telephony telephony = Telephony.instance;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -38,14 +42,25 @@ class Component91 extends StatelessWidget {
           pinTop: true,
           pinBottom: true,
           child: Container(child:FlatButton(
-            onPressed: (){
+            onPressed: ()async{
 //konum için gerekli izinleri ister
               loca1.location.requestPermission();
               loca1.location.serviceEnabled();
               loca1.location.requestService();
               loca1.location.hasPermission();
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) =>MyStatefulWidget() ));
+
+              Timer(Duration(seconds: 3), () async {
+
+                bool permissionsGranted = await telephony.requestPhoneAndSmsPermissions;
+
+                print("Yeah, this line is printed after 3 seconds");
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) =>MyStatefulWidget() ));
+
+              });
+
+
+
             },
               child:Text('')
           ),

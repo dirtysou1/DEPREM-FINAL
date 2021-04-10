@@ -29,7 +29,7 @@ class _AddEditPageState extends State<AddEditPage> {
       var url = 'https://www.easyrescuer.com/edit.php';
       http.post(url, body: {
         'id': widget.list[widget.index]['id'],
-        'name': firstName.text,
+        'name': firstName.text.toUpperCase(),
         'phone': phone.text,
         'address': address.text,
       });
@@ -37,7 +37,7 @@ class _AddEditPageState extends State<AddEditPage> {
       var url = 'https://www.easyrescuer.com/add.php';
       http.post(url, body: {
         'userid': finalID.trim(),
-        'name': firstName.text,
+        'name': firstName.text.toUpperCase(),
         'phone': phone.text,
         'address': address.text,
       });

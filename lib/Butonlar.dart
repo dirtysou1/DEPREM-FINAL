@@ -18,9 +18,9 @@ import 'package:battery/battery.dart';
 import 'YardmBildirim.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
+import 'package:telephony/telephony.dart';
 import 'main.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 class Butonlar extends StatefulWidget {
   @override
   _ButonlarState createState() => _ButonlarState();
@@ -108,7 +108,7 @@ class _ButonlarState extends State<Butonlar> {
   final Battery _battery = Battery();
   LocationService loca1 = new LocationService();
   UserLocation Loca = new UserLocation();
-
+  bool yardim;
   Future yardimSil() async{
     var url = 'https://www.easyrescuer.com/YardimSil.php';
     var response = await http.post(Uri.parse(url),
@@ -121,6 +121,54 @@ class _ButonlarState extends State<Butonlar> {
     return jsonDecode(response.body);
 
   }
+
+
+
+  void NumaraCek() async{
+
+    var url = 'https://www.easyrescuer.com/NumaraCekme.php';
+    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    final LOCA = (await loca1.location.getLocation()).toString();
+    sharedPreferences.setString('Location', LOCA);
+    var konum = await sharedPreferences.getString('Location');
+    final SharedPreferences numara = await SharedPreferences.getInstance();
+    final Telephony telephony = Telephony.instance;
+    var response = await http.post(Uri.parse(url),
+
+
+        body: {
+          "userid": finalID.toString().trim(),
+        }
+    );
+
+    List text = jsonDecode(response.body);
+    text.forEach((element) {
+
+      var a = element.toString();
+      dynamic intValue = int.parse(a.replaceAll(RegExp('[^0-9]'), ''));
+      print(intValue);
+
+
+
+
+
+      String guvende = "Merhaba, sizi yakını olarak ekleyen ${finalisim.toUpperCase()} ${finalsoyisim.toUpperCase()} güvende olduğunu belirtti. Kordinatları: $konum";
+      String yardimmesaj  = "Sizi yakını olarak ekleyen ${finalisim.toUpperCase()} ${finalsoyisim.toUpperCase()} TEHLİKEDE olduğunu belirtti. Kordinatları: $konum";
+      telephony.sendSms(
+            to: "+90$intValue",
+
+            message:yardim ? yardimmesaj:guvende
+        );
+      }
+      //print(element.toString());
+
+    );
+  }
+
+
+
+
+
 
   var urlTehlike = "https://www.easyrescuer.com/yardim.php";
   void addData() async{
@@ -444,12 +492,15 @@ class _ButonlarState extends State<Butonlar> {
               ),
               child: FlatButton(
                 onPressed: () async {
+                  yardim= false;
+                  NumaraCek();
+
                   yardimSil();
 
                   advancedPlayer.stop();
                   advancedPlayer.dispose();
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) => GvendeBildirim()));
+                  //Navigator.of(context).push(MaterialPageRoute(
+                    //  builder: (BuildContext context) => GvendeBildirim()));
                 },
                 child: Text(''),
               ),
@@ -464,6 +515,10 @@ class _ButonlarState extends State<Butonlar> {
             child: Container(
               child: FlatButton(
                 onPressed: () async {
+                  yardim= true;
+                  //NumaraCek();
+
+
                   // VolumeWatcher.setVolume(maxVolume); //sesi maximuma çıkarır
                   final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
@@ -496,9 +551,10 @@ class _ButonlarState extends State<Butonlar> {
                     stayAwake: true,
                   );
 
-                  addData();
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) => YardmBildirim()));
+                  //addData();
+                  NumaraCek();
+                 // Navigator.of(context).push(MaterialPageRoute(
+                      //builder: (BuildContext context) => YardmBildirim()));
                 },
                 child: Text(''),
               ),
@@ -512,6 +568,10 @@ class _ButonlarState extends State<Butonlar> {
       ),
     );
   }
+
+
+
+
 
 }
 

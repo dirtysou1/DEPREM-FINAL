@@ -46,6 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,6 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 itemCount: snapshot.data.length,
                 itemBuilder: (context,index){
                   List list = snapshot.data;
+
                   return Center(
                     child: Container(height: 65,
                       width: 320,

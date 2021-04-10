@@ -81,7 +81,7 @@ class _ProfilSayfasiState extends State<ProfilSayfasi> {
                 margin: EdgeInsets.only(left: 10.0, right: 10.0),
                 child: Center(
                     child: Text(
-                  "İsim :  $finalisim",
+                  "İsim :  ${finalisim.toUpperCase()}",
                   style: Styles.normalTextStyle,
                 )),
               ),
@@ -100,7 +100,7 @@ class _ProfilSayfasiState extends State<ProfilSayfasi> {
                 margin: EdgeInsets.only(left: 10.0, right: 10.0),
                 child: Center(
                     child: Text(
-                  "Soyisim :  $finalsoyisim",
+                  "Soyisim :  ${finalsoyisim.toUpperCase()}",
                   style: Styles.normalTextStyle,
                 )),
               ),
@@ -138,7 +138,7 @@ class _ProfilSayfasiState extends State<ProfilSayfasi> {
                 margin: EdgeInsets.only(left: 10.0, right: 10.0),
                 child: Center(
                     child: Text(
-                  "İl :  $finalil",
+                  "İl :  ${finalil.toUpperCase()}",
                   style: Styles.normalTextStyle,
                 )),
               ),
