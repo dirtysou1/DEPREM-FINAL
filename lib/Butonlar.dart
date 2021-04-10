@@ -19,6 +19,8 @@ import 'YardmBildirim.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'main.dart';
+
 class Butonlar extends StatefulWidget {
   @override
   _ButonlarState createState() => _ButonlarState();
@@ -107,7 +109,18 @@ class _ButonlarState extends State<Butonlar> {
   LocationService loca1 = new LocationService();
   UserLocation Loca = new UserLocation();
 
+  Future yardimSil() async{
+    var url = 'https://www.easyrescuer.com/YardimSil.php';
+    var response = await http.post(Uri.parse(url),
+        body: {
+          "yardim_tel": finaltel.toString().trim(),
 
+
+        }
+    );
+    return jsonDecode(response.body);
+
+  }
 
   var urlTehlike = "https://www.easyrescuer.com/yardim.php";
   void addData() async{
@@ -431,7 +444,7 @@ class _ButonlarState extends State<Butonlar> {
               ),
               child: FlatButton(
                 onPressed: () async {
-
+                  yardimSil();
 
                   advancedPlayer.stop();
                   advancedPlayer.dispose();
