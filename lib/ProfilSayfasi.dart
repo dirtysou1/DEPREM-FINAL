@@ -50,115 +50,117 @@ class _ProfilSayfasiState extends State<ProfilSayfasi> {
     return new Column(
       children: [
         CircleAvatar(
-          radius: 90,
+          radius: 70,
           backgroundColor: Color.fromRGBO(255, 255, 255, 0.3),
           child: Image.asset('assets/images/personcon.png'),
         ),
         SpaceH40(),
         Container(
-          height: 500,
+          height: 450,
           width: 400,
           decoration: BoxDecoration(
             color: Color.fromRGBO(255, 255, 255, 0.3),
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(30),
           ),
-          padding: EdgeInsets.only(
-            left: 10,
-            right: 50,
+
+          margin: EdgeInsets.only(left: 10.0, right: 10.0,bottom: 20),
+          child: Center(
+            child: Column(children: [
+              SpaceH44(),
+              Container(
+                height: 65,
+                width: 250,
+                decoration: BoxDecoration(
+                  color: Color.fromRGBO(43, 43, 44, 1.0),
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                padding: EdgeInsets.only(
+                  left: 10,
+                  right: 50,
+                ),
+                margin: EdgeInsets.only(left: 10.0, right: 10.0),
+                child: Center(
+                    child: Text(
+                  "İsim :  $finalisim",
+                  style: Styles.normalTextStyle,
+                )),
+              ),
+              SpaceH16(),
+              Container(
+                height: 65,
+                width: 250,
+                decoration: BoxDecoration(
+                  color: Color.fromRGBO(43, 43, 44, 1.0),
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                padding: EdgeInsets.only(
+                  left: 10,
+                  right: 50,
+                ),
+                margin: EdgeInsets.only(left: 10.0, right: 10.0),
+                child: Center(
+                    child: Text(
+                  "Soyisim :  $finalsoyisim",
+                  style: Styles.normalTextStyle,
+                )),
+              ),
+              SpaceH16(),
+              Container(
+                height: 65,
+                width: 250,
+                decoration: BoxDecoration(
+                  color: Color.fromRGBO(43, 43, 44, 1.0),
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                padding: EdgeInsets.only(
+                  left: 10,
+                  right: 50,
+                ),
+                margin: EdgeInsets.only(left: 10.0, right: 10.0),
+                child: Center(
+                    child: Text(
+                  "Doğum yılınız :  $finaldogumyili",
+                  style: Styles.normalTextStyle,
+                )),
+              ),
+              SpaceH16(),
+              Container(
+                height: 65,
+                width: 250,
+                decoration: BoxDecoration(
+                  color: Color.fromRGBO(43, 43, 44, 1.0),
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                padding: EdgeInsets.only(
+                  left: 10,
+                  right: 50,
+                ),
+                margin: EdgeInsets.only(left: 10.0, right: 10.0),
+                child: Center(
+                    child: Text(
+                  "İl :  $finalil",
+                  style: Styles.normalTextStyle,
+                )),
+              ),
+              SpaceH30(),
+              SizedBox(width: 150,
+                height: 50,
+                child: PotbellyButton(
+                  StringConst.CIKIS,
+                  decoration: BoxDecoration(
+                      color: Colors.black87,
+                      borderRadius: BorderRadius.circular(30)),
+                  onTap: () async {
+                    final SharedPreferences sharedPreferences =
+                        await SharedPreferences.getInstance();
+                    sharedPreferences.remove('email');
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) => LoginScreen()));
+                  },
+                ),
+              ),
+            ]),
           ),
-          margin: EdgeInsets.only(left: 10.0, right: 10.0),
-          child: Column(children: [
-            SpaceH44(),
-            Container(
-              height: 65,
-              width: 250,
-              decoration: BoxDecoration(
-                color: Color.fromRGBO(43, 43, 44, 1.0),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              padding: EdgeInsets.only(
-                left: 10,
-                right: 50,
-              ),
-              margin: EdgeInsets.only(left: 10.0, right: 10.0),
-              child: Center(
-                  child: Text(
-                "İsim :  $finalisim",
-                style: Styles.normalTextStyle,
-              )),
-            ),
-            SpaceH16(),
-            Container(
-              height: 65,
-              width: 250,
-              decoration: BoxDecoration(
-                color: Color.fromRGBO(43, 43, 44, 1.0),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              padding: EdgeInsets.only(
-                left: 10,
-                right: 50,
-              ),
-              margin: EdgeInsets.only(left: 10.0, right: 10.0),
-              child: Center(
-                  child: Text(
-                "Soyisim :  $finalsoyisim",
-                style: Styles.normalTextStyle,
-              )),
-            ),
-            SpaceH16(),
-            Container(
-              height: 65,
-              width: 250,
-              decoration: BoxDecoration(
-                color: Color.fromRGBO(43, 43, 44, 1.0),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              padding: EdgeInsets.only(
-                left: 10,
-                right: 50,
-              ),
-              margin: EdgeInsets.only(left: 10.0, right: 10.0),
-              child: Center(
-                  child: Text(
-                "Doğum yılınız :  $finaldogumyili",
-                style: Styles.normalTextStyle,
-              )),
-            ),
-            SpaceH16(),
-            Container(
-              height: 65,
-              width: 250,
-              decoration: BoxDecoration(
-                color: Color.fromRGBO(43, 43, 44, 1.0),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              padding: EdgeInsets.only(
-                left: 10,
-                right: 50,
-              ),
-              margin: EdgeInsets.only(left: 10.0, right: 10.0),
-              child: Center(
-                  child: Text(
-                "İl :  $finalil",
-                style: Styles.normalTextStyle,
-              )),
-            ),
-            SpaceH30(),
-            PotbellyButton(
-              StringConst.CIKIS,
-              decoration: BoxDecoration(
-                  color: Colors.black87,
-                  borderRadius: BorderRadius.circular(20)),
-              onTap: () async {
-                final SharedPreferences sharedPreferences =
-                    await SharedPreferences.getInstance();
-                sharedPreferences.remove('email');
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) => LoginScreen()));
-              },
-            ),
-          ]),
         ),
       ],
     );
