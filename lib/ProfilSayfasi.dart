@@ -36,12 +36,7 @@ class _ProfilSayfasiState extends State<ProfilSayfasi> {
                 child: Form(
                     child: Column(
                   children: <Widget>[
-                    CircleAvatar(
-                      radius: 90,
-                      backgroundColor: Color.fromRGBO(255, 255, 255, 0.3),
-                      child: Image.asset('assets/images/personcon.png'),
-                    ),
-                    SpaceH40(),
+
                     _profil()
                   ],
                 )),
@@ -54,6 +49,12 @@ class _ProfilSayfasiState extends State<ProfilSayfasi> {
   Widget _profil() {
     return new Column(
       children: [
+        CircleAvatar(
+          radius: 90,
+          backgroundColor: Color.fromRGBO(255, 255, 255, 0.3),
+          child: Image.asset('assets/images/personcon.png'),
+        ),
+        SpaceH40(),
         Container(
           height: 500,
           width: 400,

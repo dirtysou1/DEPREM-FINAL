@@ -113,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   );
                 }
             )
-                : CircularProgressIndicator();
+                : Center(child: CircularProgressIndicator());
           },
         ),
       ),

@@ -134,53 +134,46 @@ class _AddEditPageState extends State<AddEditPage> {
               ),
               SpaceH30(),
 
-              Center(
-                child: Container(
-                  margin: EdgeInsets.only(left: 130.0, right: 20.0, top: 20),
-                  child: Row(
+              Container(
+                //margin: EdgeInsets.only(left: 100.0, right: 20.0, top: 20),
+                child: Center(
+                  child: Column(
                     children: [
-                      Center(
-                        child: Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Center(
-                            child: RaisedButton(
-                              onPressed: () {
 
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (BuildContext context) => MyHomePage()));
-                              },
-                              color: Color.fromRGBO(60, 63, 65, 1.0),
-                              child: Text(
-                                "İptal",
-                                style: TextStyle(color: Colors.white),
-                              ),
+                      Padding(
+                        padding: EdgeInsets.all(8),
+                        child: Center(
+                          child: RaisedButton(
+                            onPressed: () {
+                              setState(() {
+                                addUpdateData();
+                              });
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (BuildContext context) => MyHomePage()));
+                              debugPrint('Clicked RaisedButton Button');
+                            },
+                            color: Color.fromRGBO(60, 63, 65, 1.0),
+                            child: Text(
+                              editMode ? 'Değiştir' : 'Kaydet',
+                              style: TextStyle(color: Colors.white),
                             ),
                           ),
                         ),
                       ),
                       Center(
-                        child: Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Center(
-                            child: RaisedButton(
-                              onPressed: () {
-                                setState(() {
-                                  addUpdateData();
-                                });
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (BuildContext context) => MyHomePage()));
-                                debugPrint('Clicked RaisedButton Button');
-                              },
-                              color: Color.fromRGBO(60, 63, 65, 1.0),
-                              child: Text(
-                                editMode ? 'Değiştir' : 'Kaydet',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
+                        child: FlatButton(
+                          onPressed: () {
+
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (BuildContext context) => MyHomePage()));
+                          },
+                          color: Color.fromRGBO(60, 63, 65, 1.0),
+                          child: Text(
+                            "İptal",
+                            style: TextStyle(color: Colors.white),
                           ),
                         ),
-                      ),
-                    ],
+                      ),],
                   ),
                 ),
               ),
