@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:homescreen/values/values.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'views/LoginScreen.dart';
-import 'main.dart';
-import 'main.dart';
-import 'main.dart';
+
+
+
 
 import 'widgets/potbelly_button.dart';
 import 'widgets/spaces.dart';
-import 'widgets/spaces.dart';
+
 
 class ProfilSayfasi extends StatefulWidget {
   @override
@@ -16,6 +16,10 @@ class ProfilSayfasi extends StatefulWidget {
 }
 
 class _ProfilSayfasiState extends State<ProfilSayfasi> {
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -100,7 +104,7 @@ class _ProfilSayfasiState extends State<ProfilSayfasi> {
                 margin: EdgeInsets.only(left: 10.0, right: 10.0),
                 child: Center(
                     child: Text(
-                  "Soyisim :  ${finalsoyisim.toUpperCase()}",
+                  "Soyisim :  ${finalSoyisim.toUpperCase()}",
                   style: Styles.normalTextStyle,
                 )),
               ),

@@ -34,9 +34,9 @@ class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
-
+String finalTel,finalisim,finalSoyisim,finaldogumyili,finalil;
 class _LoginScreenState extends State<LoginScreen> {
-  String finalTel,finalisim,finalSoyisim,finaldogumyili,finalil;
+
   var divWidth;
   bool _autoValidate = false;
   GlobalKey<FormState> _formKey = new GlobalKey<FormState>();

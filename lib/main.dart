@@ -81,9 +81,9 @@ class _MyAppState extends State<MyApp> {
       finaldogumyili= obtaindogumyili;
       finalil =obtainil;
       finaltel = obtainnumara;
-/*finalyakinnumara1= obtainYakinnumara1;
-finalyakinisim1 = obtainYakinisim1;
-finalyakinoyisim1 =obtainYakinsoyisim1;*/
+      /*finalyakinnumara1= obtainYakinnumara1;
+    finalyakinisim1 = obtainYakinisim1;
+    finalyakinoyisim1 =obtainYakinsoyisim1;*/
 
     });
     print(finalEmail);
