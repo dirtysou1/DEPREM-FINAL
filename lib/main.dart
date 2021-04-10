@@ -14,8 +14,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_session/flutter_session.dart';
-import 'package:homescreen/HomePage.dart';
-import 'package:homescreen/Profil.dart';
+
+
 import 'package:homescreen/ProfilSayfasi.dart';
 import 'package:homescreen/ProfilePage.dart';
 import 'package:homescreen/InfoPage.dart';
