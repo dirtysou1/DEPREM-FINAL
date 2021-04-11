@@ -34,7 +34,7 @@ class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
-String finalTel,finalisim,finalSoyisim,finaldogumyili,finalil;
+
 class _LoginScreenState extends State<LoginScreen> {
 
   var divWidth;
@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String errormsg;
 
   var url = "https://www.easyrescuer.com/girisflutter.php";
-
+  String finalTel,finalisim,finalSoyisim,finaldogumyili,finalil,finalid;
   void addData() async{
     var response = await http.post(Uri.parse(url),
         body: {
@@ -83,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
       sharedPreferences.setString('id', id);
       var obtainId = sharedPreferences.getString('id');
-      finalID =obtainId ;
+      finalid =obtainId ;
 
 
       sharedPreferences.setString('isim', jsonisim);

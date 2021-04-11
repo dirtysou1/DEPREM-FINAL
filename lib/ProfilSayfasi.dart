@@ -1,11 +1,15 @@
+
+import 'package:homescreen/views/LoginScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:homescreen/values/values.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
-import 'views/LoginScreen.dart';
 
 
 
 
+
+import 'main.dart';
 import 'widgets/potbelly_button.dart';
 import 'widgets/spaces.dart';
 
@@ -85,7 +89,7 @@ class _ProfilSayfasiState extends State<ProfilSayfasi> {
                 margin: EdgeInsets.only(left: 10.0, right: 10.0),
                 child: Center(
                     child: Text(
-                  "İsim :  ${finalisim.toUpperCase()}",
+                  "İsim :  ${finalisim}",
                   style: Styles.normalTextStyle,
                 )),
               ),
@@ -104,7 +108,7 @@ class _ProfilSayfasiState extends State<ProfilSayfasi> {
                 margin: EdgeInsets.only(left: 10.0, right: 10.0),
                 child: Center(
                     child: Text(
-                  "Soyisim :  ${finalSoyisim.toUpperCase()}",
+                  "Soyisim :  ${finalsoyisim}",
                   style: Styles.normalTextStyle,
                 )),
               ),
@@ -142,7 +146,7 @@ class _ProfilSayfasiState extends State<ProfilSayfasi> {
                 margin: EdgeInsets.only(left: 10.0, right: 10.0),
                 child: Center(
                     child: Text(
-                  "İl :  ${finalil.toUpperCase()}",
+                  "İl :  ${finalil}",
                   style: Styles.normalTextStyle,
                 )),
               ),

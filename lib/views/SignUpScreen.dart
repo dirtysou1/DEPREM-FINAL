@@ -8,9 +8,8 @@ import 'package:homescreen/widgets/spaces.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'LoginScreen.dart';
-import 'dart:async';
 import 'dart:convert';
-import 'package:fluttertoast/fluttertoast.dart';
+
 class SignUpScreen extends StatefulWidget {
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
@@ -45,11 +44,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
       var response = await http.post(Uri.parse(url),
           body: {
             "email": _emailTextController.text.trim(),
-            "isim": _firstNameTextController.text.trim(),
-            "soyisim": _lastNameTextController.text.trim(),
+            "isim": _firstNameTextController.text.trim().toUpperCase(),
+            "soyisim": _lastNameTextController.text.trim().toUpperCase(),
             "dogumyili": _dogumTextController.text.trim(),
             "tel": _phoneTextController.text.trim(),
-            "il": _ilTextController.text.trim(),
+            "il": _ilTextController.text.trim().toUpperCase(),
             "password": _passwordTextController.text.trim(),
           }
       );

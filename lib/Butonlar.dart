@@ -20,7 +20,10 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:telephony/telephony.dart';
 import 'main.dart';
+
 import 'package:url_launcher/url_launcher.dart';
+
+
 class Butonlar extends StatefulWidget {
   @override
   _ButonlarState createState() => _ButonlarState();
@@ -30,7 +33,7 @@ class _ButonlarState extends State<Butonlar> {
 
 
   String token1;
-  var url = 'https://umutbutonu.000webhostapp.com/PushNotification.php';
+
   @override
   void initState() {
     super.initState();
