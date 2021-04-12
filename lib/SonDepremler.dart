@@ -109,7 +109,8 @@ print('$enlemDigit $boylamDigit');
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(floatingActionButton: FloatingActionButton(backgroundColor: Colors.amber[900],
+    return MaterialApp(debugShowCheckedModeBanner: false,
+        home:Scaffold(floatingActionButton: FloatingActionButton(backgroundColor: Colors.amber[900],
       child: Icon(Icons.location_on_rounded,size: 50,),heroTag: "Size yakın depremleri görmek için tıklayınız.",
       onPressed: (){
         Navigator.push(context, MaterialPageRoute(builder: (context) => YakinDepremApi(),),);
@@ -122,13 +123,13 @@ print('$enlemDigit $boylamDigit');
         backgroundColor: Colors.transparent,
         title: Text('SON DEPREMLER'),
         centerTitle: true,
-        leading: IconButton(
-          icon: Image.asset('assets/images/2.0x/closebutton.png'),
+        /*leading: IconButton(
+          icon: Icon(Icons.home),
           onPressed: () {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (BuildContext context) => MyStatefulWidget()));
           },
-        ),
+        ),*/
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -225,6 +226,6 @@ print('$enlemDigit $boylamDigit');
           },
         ),
       ),
-    );
+    ));
   }
 }

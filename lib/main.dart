@@ -38,7 +38,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
 
-  runApp(MaterialApp(home: MyApp()));
+  runApp(MaterialApp(home: MyApp(),debugShowCheckedModeBanner: false,));
 
 }
 String finalEmail;

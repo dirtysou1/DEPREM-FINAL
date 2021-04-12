@@ -50,7 +50,7 @@ class _YakinDepremApiState extends State<YakinDepremApi> {
 
 
 
-    var enlemliboylamli ="https://turkiyedepremapi.herokuapp.com/api?minenlem=$enlemEksi2.$enlemDigit&maxenlem=$enlemArti2.$enlemDigit&minboylam=$longtitudeEksi2.$boylamDigit&maxboylam=$longtitudeArti2.$boylamDigit&min=2";
+    var enlemliboylamli ="https://turkiyedepremapi.herokuapp.com/api?minenlem=$enlemEksi2.$enlemDigit&maxenlem=$enlemArti2.$enlemDigit&minboylam=$longtitudeEksi2.$boylamDigit&maxboylam=$longtitudeArti2.$boylamDigit";
     var url = 'https://turkiyedepremapi.herokuapp.com/api?min=2.0';
 
 
