@@ -49,9 +49,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.amber[900],
-        title: Text('Yakınlarım'),centerTitle: true,
+    return Scaffold(backgroundColor:Colors.transparent ,extendBodyBehindAppBar: true,
+      appBar: AppBar(backgroundColor: Colors.transparent,
+        title: Text('YAKINLARIM'),centerTitle: true,leading: IconButton(icon: Image.asset('assets/images/2.0x/closebutton.png'),
+          onPressed: (){
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (BuildContext context) => MyStatefulWidget()));
+          },),
       ),
       floatingActionButton: FloatingActionButton(backgroundColor: Colors.amber[900],
         child: Icon(Icons.add,size: 50,),

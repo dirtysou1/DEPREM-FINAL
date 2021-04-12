@@ -17,6 +17,12 @@ class AddEditPage extends StatefulWidget {
 }
 
 class _AddEditPageState extends State<AddEditPage> {
+
+
+  bool _autoValidate = false;
+  GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
+
+
   TextEditingController firstName = TextEditingController();
   TextEditingController lastName = TextEditingController();
   TextEditingController phone = TextEditingController();
@@ -57,8 +63,12 @@ class _AddEditPageState extends State<AddEditPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.amber[900],centerTitle: true,
+    return Scaffold(backgroundColor:Color.fromRGBO(255, 255, 255, 0.3) ,extendBodyBehindAppBar: true,
+      appBar: AppBar(backgroundColor: Color.fromRGBO(255, 255, 255, 0.2),centerTitle: true,leading: IconButton(icon: Image.asset('assets/images/2.0x/closebutton.png'),
+        onPressed: (){
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (BuildContext context) => MyHomePage()));
+        },),
         title: Text(editMode ? 'Kişiyi düzenle' : 'Kişi ekle'),
       ),
       body: Container(
@@ -94,10 +104,12 @@ class _AddEditPageState extends State<AddEditPage> {
                   child: new TextFormField(
                       style: Styles.normalTextStyle,
                       controller: firstName,
+                      validator: _validateFields,
                       keyboardType: TextInputType.name,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.people_outline_rounded),
                         //labelText: " ",
+
                         hintText: "Kişinin adı ve soyadı",
                         hintStyle: Styles.customNormalTextStyle(
                             fontSize: 13, color: Colors.white),
@@ -121,6 +133,7 @@ class _AddEditPageState extends State<AddEditPage> {
                   child: new TextFormField(
                       style: Styles.normalTextStyle,
                       controller: phone,
+                      validator: _validateFields,
                       keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.phone),
@@ -183,4 +196,14 @@ class _AddEditPageState extends State<AddEditPage> {
       ),
     );
   }
+
+  String _validateFields(String text) {
+    if (text.length == 0) {
+      return "Boş kalmamalı";
+    } else {
+      return null;
+    }
+  }
 }
+
+

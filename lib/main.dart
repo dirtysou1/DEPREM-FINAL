@@ -24,6 +24,7 @@ import 'package:homescreen/Butonlar.dart';
 
 import 'package:homescreen/Yaknlarm.dart';
 import 'package:get/get.dart';
+import 'package:homescreen/SonDepremler.dart';
 
 import 'package:homescreen/views/LoginScreen.dart';
 import 'package:homescreen/views/SignUpScreen.dart';
@@ -116,7 +117,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     Butonlar(),
     ProfilSayfasi(),
     Yaknlarm(),
-    Settings(),
+    Depremapi(),
   ];
 
   void _onItemTapped(int index) {
@@ -150,8 +151,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             backgroundColor: Color.fromRGBO(54,54,54,1),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.info_outlined),
-            label: 'Bilgiler',
+            icon: Icon(Icons.apartment_outlined),
+            activeIcon: Icon(Icons.apartment_sharp),
+            label: 'Son Depremler',
             backgroundColor: Color.fromRGBO(54,54,54,1),
           ),
         ],

@@ -57,7 +57,7 @@ class Yaknlarm extends StatelessWidget {
               height: 500,
               width: 400,
               decoration: BoxDecoration(
-                color: Color.fromRGBO(255, 255, 255, 0.3),
+                color: Color.fromRGBO(255, 255, 255, 0.13333333333333333),
                 borderRadius: BorderRadius.circular(10),
               ),
               padding: EdgeInsets.only(
@@ -65,18 +65,22 @@ class Yaknlarm extends StatelessWidget {
                 right: 50,
               ),
               margin: EdgeInsets.only(left: 10.0, right: 10.0),
-              child: Column(
-                children: [SpaceH8(),
-                  Center(
-                      child: Text(
-                    "Yakınlarınızı neden eklemelisiniz?",
-                    style: Styles.customNormalTextStyle(fontSize: 20),
-                  )),
-                    SpaceH12(),
-                     Text("Bu yüzden",
-                        style: Styles.customNormalTextStyle(fontSize: 17),),
+              child: Center(
+                child: Column(
+                  children: [SpaceH8(),
+                    Center(
+                        child: Text(
+                      "Yakınlarınızı neden eklemelisiniz?",
+                      style: Styles.customNormalTextStyle(fontSize: 20),
+                    )),
+                      SpaceH12(),
+                       Center(
+                         child: Text("Deprem anında güvende olduğunuz veya tehlikede olduğunuz hakkında yakınlarınıza bilgi verebilmemiz için iletişim bilgilerine ihtiyacımız var. Bu bilgiler herhangi bir üçüncü kişi ile paylaşılmayacaktır.",
+                            style: Styles.customNormalTextStyle(fontSize: 17),),
+                       ),
 
-                ],
+                  ],
+                ),
               ),
             ),
           ),

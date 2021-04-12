@@ -1,5 +1,4 @@
-
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
 import 'package:flutter_session/flutter_session.dart';
@@ -23,15 +22,12 @@ import 'main.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 
-
 class Butonlar extends StatefulWidget {
   @override
   _ButonlarState createState() => _ButonlarState();
 }
 
 class _ButonlarState extends State<Butonlar> {
-
-
   String token1;
 
   @override
@@ -41,9 +37,6 @@ class _ButonlarState extends State<Butonlar> {
     initPlatformState();
   }
 
-
-
-
   ////////////////////////////////
 
   Duration _duration = new Duration();
@@ -52,28 +45,26 @@ class _ButonlarState extends State<Butonlar> {
 
   AudioCache audioCache;
 
-
-
   void initPlayer() {
     advancedPlayer = new AudioPlayer();
 
     audioCache =
-    new AudioCache(fixedPlayer: advancedPlayer, respectSilence: false);
+        new AudioCache(fixedPlayer: advancedPlayer, respectSilence: false);
 
     advancedPlayer.durationHandler = (d) => setState(() {
-      _duration = d;
-    });
-
+          _duration = d;
+        });
 
     advancedPlayer.positionHandler = (p) => setState(() {
-      _position = p;
-    });
+          _position = p;
+        });
   }
 
   String _platformVersion = 'Unknown';
   double currentVolume = 0;
   double initVolume = 0;
   double maxVolume = 0;
+  bool _switchValue = true;
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
@@ -112,70 +103,49 @@ class _ButonlarState extends State<Butonlar> {
   LocationService loca1 = new LocationService();
   UserLocation Loca = new UserLocation();
   bool yardim;
-  Future yardimSil() async{
+  Future yardimSil() async {
     var url = 'https://www.easyrescuer.com/YardimSil.php';
-    var response = await http.post(Uri.parse(url),
-        body: {
-          "yardim_tel": finaltel.toString().trim(),
-
-
-        }
-    );
+    var response = await http.post(Uri.parse(url), body: {
+      "yardim_tel": finaltel.toString().trim(),
+    });
     return jsonDecode(response.body);
-
   }
 
-
-
-  void NumaraCek() async{
-
+  void NumaraCek() async {
     var url = 'https://www.easyrescuer.com/NumaraCekme.php';
-    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
     final LOCA = (await loca1.location.getLocation()).toString();
     sharedPreferences.setString('Location', LOCA);
     var konum = await sharedPreferences.getString('Location');
     final SharedPreferences numara = await SharedPreferences.getInstance();
     final Telephony telephony = Telephony.instance;
-    var response = await http.post(Uri.parse(url),
-
-
-        body: {
-          "userid": finalID.toString().trim(),
-        }
-    );
+    var response = await http.post(Uri.parse(url), body: {
+      "userid": finalID.toString().trim(),
+    });
 
     List text = jsonDecode(response.body);
     text.forEach((element) {
-
       var a = element.toString();
       dynamic intValue = int.parse(a.replaceAll(RegExp('[^0-9]'), ''));
       print(intValue);
 
-
-
-
-
-      String guvende = "Merhaba, sizi yakını olarak ekleyen ${finalisim.toUpperCase()} ${finalsoyisim.toUpperCase()} güvende olduğunu belirtti. Kordinatları: $konum";
-      String yardimmesaj  = "Sizi yakını olarak ekleyen ${finalisim.toUpperCase()} ${finalsoyisim.toUpperCase()} TEHLİKEDE olduğunu belirtti. Kordinatları: $konum";
+      String guvende =
+          "Merhaba, sizi yakını olarak ekleyen ${finalisim.toUpperCase()} ${finalsoyisim.toUpperCase()} güvende olduğunu belirtti. Kordinatları: $konum";
+      String yardimmesaj =
+          "Sizi yakını olarak ekleyen ${finalisim.toUpperCase()} ${finalsoyisim.toUpperCase()} TEHLİKEDE olduğunu belirtti. Kordinatları: $konum";
       telephony.sendSms(
-            to: "+90$intValue",
+          to: "+90$intValue", message: yardim ? yardimmesaj : guvende);
+    }
+        //print(element.toString());
 
-            message:yardim ? yardimmesaj:guvende
         );
-      }
-      //print(element.toString());
-
-    );
   }
 
-
-
-
-
-
   var urlTehlike = "https://www.easyrescuer.com/yardim.php";
-  void addData() async{
-    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  void addData() async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
     var isim = await sharedPreferences.getString('isim');
     var tel = await sharedPreferences.getString('tel');
     var dogumyili = await sharedPreferences.getString('dogumyili');
@@ -183,36 +153,27 @@ class _ButonlarState extends State<Butonlar> {
     var konum = await sharedPreferences.getString('Location');
     var model = await sharedPreferences.getString('model');
     var battery = await sharedPreferences.getString('battery');
-    var response = await http.post(Uri.parse(urlTehlike),
-        body: {
-          "yardim_isim":isim.trim() ,
-          "yardim_soyisim": soyisim.trim(),
-          "yardim_DogumYili": dogumyili.trim(),
-          "yardim_tel": tel.trim(),
-          "yardim_TelBatarya": battery.trim(),
-          "yardim_TelefonModel": model.trim(),
-          "yardim_konum": konum.trim(),
-        }
-    );
+    var response = await http.post(Uri.parse(urlTehlike), body: {
+      "yardim_isim": isim.trim(),
+      "yardim_soyisim": soyisim.trim(),
+      "yardim_DogumYili": dogumyili.trim(),
+      "yardim_tel": tel.trim(),
+      "yardim_TelBatarya": battery.trim(),
+      "yardim_TelefonModel": model.trim(),
+      "yardim_konum": konum.trim(),
+    });
     var jsonData = jsonDecode(response.body);
     var jsonString = jsonData['message'];
 
-
-
-    if(jsonString=='Yardım çağrınız alınmıştır.'){
-
-      var mesaj =myToast(jsonString).toString();
-
-
+    if (jsonString == 'Yardım çağrınız alınmıştır.') {
+      var mesaj = myToast(jsonString).toString();
 
       //You can route to your desire page here
 
-    }else{
+    } else {
       myToast(jsonString);
     }
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -257,7 +218,7 @@ class _ButonlarState extends State<Butonlar> {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius:
-                      BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                          BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
                       color: const Color(0xff950404),
                       border: Border.all(
                           width: 1.0, color: const Color(0xffffffff)),
@@ -356,42 +317,42 @@ class _ButonlarState extends State<Butonlar> {
                   pinBottom: true,
                   child: SingleChildScrollView(
                       child: Text.rich(
+                    TextSpan(
+                      style: TextStyle(
+                        fontFamily: 'Roboto',
+                        fontSize: 17,
+                        color: const Color(0xffffffff),
+                        letterSpacing: 1.7000000000000002,
+                      ),
+                      children: [
                         TextSpan(
-                          style: TextStyle(
-                            fontFamily: 'Roboto',
-                            fontSize: 17,
-                            color: const Color(0xffffffff),
-                            letterSpacing: 1.7000000000000002,
-                          ),
-                          children: [
-                            TextSpan(
-                              text: '      ',
-                            ),
-                            TextSpan(
-                              text: 'GÜVENDEYİM\n',
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: const Color(0xff62c539),
-                                letterSpacing: 2,
-                              ),
-                            ),
-                            TextSpan(
-                              text: '\n',
-                            ),
-                            TextSpan(
-                              text:
-                              'Sistemde kayıtlı yakınlarınıza güvende olduğunuz bilgisi gönderilir ve sizi en yakın güvenli bölgeye yönlendirir.\n',
-                              style: TextStyle(
-                                fontSize: 13,
-                                letterSpacing: 1.3,
-                              ),
-                            ),
-                          ],
+                          text: '      ',
                         ),
-                        textHeightBehavior:
+                        TextSpan(
+                          text: 'GÜVENDEYİM\n',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: const Color(0xff62c539),
+                            letterSpacing: 2,
+                          ),
+                        ),
+                        TextSpan(
+                          text: '\n',
+                        ),
+                        TextSpan(
+                          text:
+                              'Sistemde kayıtlı yakınlarınıza güvende olduğunuz bilgisi gönderilir ve sizi en yakın güvenli bölgeye yönlendirir.\n',
+                          style: TextStyle(
+                            fontSize: 13,
+                            letterSpacing: 1.3,
+                          ),
+                        ),
+                      ],
+                    ),
+                    textHeightBehavior:
                         TextHeightBehavior(applyHeightToFirstAscent: false),
-                        textAlign: TextAlign.left,
-                      )),
+                    textAlign: TextAlign.left,
+                  )),
                 ),
               ],
             ),
@@ -413,46 +374,45 @@ class _ButonlarState extends State<Butonlar> {
                   pinTop: true,
                   pinBottom: true,
                   child:
-                  // Adobe XD layer: '  GÜVENDE DEĞİLİM  …' (text)
-                  SingleChildScrollView(
-                      child: Text.rich(
+                      // Adobe XD layer: '  GÜVENDE DEĞİLİM  …' (text)
+                      SingleChildScrollView(
+                          child: Text.rich(
+                    TextSpan(
+                      style: TextStyle(
+                        fontFamily: 'Roboto',
+                        fontSize: 17,
+                        color: const Color(0xffffffff),
+                        letterSpacing: 1.7000000000000002,
+                      ),
+                      children: [
                         TextSpan(
-                          style: TextStyle(
-                            fontFamily: 'Roboto',
-                            fontSize: 17,
-                            color: const Color(0xffffffff),
-                            letterSpacing: 1.7000000000000002,
-                          ),
-                          children: [
-                            TextSpan(
-                              text: '  ',
-                            ),
-                            TextSpan(
-                              text: 'GÜVENDE DEĞİLİM\n',
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: const Color(0xffec4949),
-                                letterSpacing: 2,
-                              ),
-                            ),
-                            TextSpan(
-                              text: '\n',
-                            ),
-                            TextSpan(
-                              text:
-                              '  Sahadaki yardım ekiplerine ve yakınlarınıza tehlikede olduğunuz bilgisi ve konumunuz gönderilir. Bir ikâz sesi güvende olduğunuzu belirtene kadar çalacaktır.',
-                              style: TextStyle(
-                                fontSize: 13,
-                                letterSpacing: 1.3,
-                              ),
-                            ),
-
-                          ],
+                          text: '  ',
                         ),
-                        textHeightBehavior:
+                        TextSpan(
+                          text: 'GÜVENDE DEĞİLİM\n',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: const Color(0xffec4949),
+                            letterSpacing: 2,
+                          ),
+                        ),
+                        TextSpan(
+                          text: '\n',
+                        ),
+                        TextSpan(
+                          text:
+                              '  Sahadaki yardım ekiplerine ve yakınlarınıza tehlikede olduğunuz bilgisi ve konumunuz gönderilir. Bir ikâz sesi güvende olduğunuzu belirtene kadar çalacaktır.',
+                          style: TextStyle(
+                            fontSize: 13,
+                            letterSpacing: 1.3,
+                          ),
+                        ),
+                      ],
+                    ),
+                    textHeightBehavior:
                         TextHeightBehavior(applyHeightToFirstAscent: false),
-                        textAlign: TextAlign.left,
-                      )),
+                    textAlign: TextAlign.left,
+                  )),
                 ),
                 Pinned.fromSize(
                   bounds: Rect.fromLTWH(0.0, 0.0, 247.1, 196.9),
@@ -495,7 +455,7 @@ class _ButonlarState extends State<Butonlar> {
               ),
               child: FlatButton(
                 onPressed: () async {
-                  yardim= false;
+                  yardim = false;
                   NumaraCek();
 
                   yardimSil();
@@ -518,12 +478,12 @@ class _ButonlarState extends State<Butonlar> {
             child: Container(
               child: FlatButton(
                 onPressed: () async {
-                  yardim= true;
+                  yardim = true;
                   //NumaraCek();
 
-
-                  // VolumeWatcher.setVolume(maxVolume); //sesi maximuma çıkarır
-                  final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+                  VolumeWatcher.setVolume(maxVolume); //sesi maximuma çıkarır
+                  final SharedPreferences sharedPreferences =
+                      await SharedPreferences.getInstance();
 
                   //batarya bilgisini alır
                   final int batteryLevel = await _battery.batteryLevel;
@@ -537,7 +497,6 @@ class _ButonlarState extends State<Butonlar> {
                   final String model = await DeviceInfo.getAndroidDeviceInfo();
                   print(model);
                   sharedPreferences.setString('model', model);
-
 
                   //konumu alır
                   // ignore: non_constant_identifier_names
@@ -554,7 +513,7 @@ class _ButonlarState extends State<Butonlar> {
                     stayAwake: true,
                   );
 
-                  //addData();
+                  addData();
                   NumaraCek();
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (BuildContext context) => YardmBildirim()));
@@ -567,27 +526,55 @@ class _ButonlarState extends State<Butonlar> {
               ),
             ),
           ),
+
+
+
+          Pinned.fromSize(
+              bounds: Rect.fromLTWH(262.0, 420.0, 113.0, 50.0),
+              size: Size(385.0, 500.0),
+              pinRight: true,
+              fixedWidth: true,
+              fixedHeight: false,
+              child: IconButton(
+                color: Colors.white,
+                icon: Icon(
+                  Icons.volume_mute,
+                ),
+                iconSize: 50,
+                onPressed: () {
+                  advancedPlayer.stop();
+                  advancedPlayer.dispose();
+                  myToast('SES KAPALI AMA YARDIM ÇAĞRINIZ HALA GEÇERLİ');
+                },
+              ))
         ],
       ),
     );
   }
 
+  void sesac() {
+    audioCache.play(
+      "alarm.mp3",
+      stayAwake: true,
+    );
+  }
 
-
-
-
+  void seskapat() {
+    advancedPlayer.stop();
+    advancedPlayer.dispose();
+  }
 }
 
-myToast(String toast){
+myToast(String toast) {
   return Fluttertoast.showToast(
       msg: toast,
-      toastLength: Toast.LENGTH_SHORT,
+      toastLength: Toast.LENGTH_LONG,
       gravity: ToastGravity.CENTER,
       timeInSecForIosWeb: 1,
       backgroundColor: Colors.red,
-      textColor: Colors.white
-  );
+      textColor: Colors.white);
 }
+
 const String _svg_ncv7d4 =
     '<svg viewBox="256.9 178.2 97.6 93.6" ><path transform="translate(256.92, 178.17)" d="M 48.79222106933594 0 C 75.73941040039063 0 97.58444213867188 20.94243621826172 97.58444213867188 46.7762336730957 C 97.58444213867188 72.61003112792969 75.73941040039063 93.55246734619141 48.79222106933594 93.55246734619141 C 21.84502220153809 93.55246734619141 -3.814697322468419e-07 72.61003112792969 -3.814697322468419e-07 46.7762336730957 C -3.814697322468419e-07 20.94243621826172 21.84502220153809 0 48.79222106933594 0 Z" fill="#058745" stroke="#ffffff" stroke-width="1" stroke-miterlimit="4" stroke-linecap="butt" /></svg>';
 const String _svg_ngabl0 =
