@@ -470,7 +470,7 @@ class _ButonlarState extends State<Butonlar> {
                   yardim = false;
 
                   Guvendemi = true;
-                  //NumaraCek();
+                  NumaraCek();
 
                   yardimSil();
 
