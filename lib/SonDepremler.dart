@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:homescreen/Constants.dart';
+import 'package:homescreen/KisiyeYakinSonDepremler.dart';
 import 'package:homescreen/plugins_utils/Location.dart';
 import 'package:http/http.dart' as http;
 import 'package:homescreen/AddEditPage.dart';
@@ -26,22 +27,35 @@ class _DepremapiState extends State<Depremapi> {
     sharedPreferences.setString('Location2', LOCA);
 
     dynamic intValue = int.parse(LOCA.replaceAll(RegExp('[^0-9]'), ''));
+    
+    
     String konum = intValue.toString();
 
+    var Kordinat = konum.substring(0,2)+"."+konum.substring(2,8)+","+konum.substring(9,11)+"."+konum.substring(11);
+
+    var enlemDigit = konum.substring(2,8);
+    var boylamDigit = konum.substring(11,16);
+    
     var enlem=konum.substring(0,2);
      var boylam =konum.substring(9,11);
 
-    int enlemEksi3 =int.parse(enlem)-2;
-    int enlemArti3 =int.parse(enlem)+2;
 
-    int longtitudeEksi3 =int.parse(boylam)-2;
-    int longtitudeArti3 =int.parse(boylam)+2;
-    var enlemliboylamli ="https://turkiyedepremapi.herokuapp.com/api?minenlem=$enlemEksi3&maxenlem=$enlemArti3&minboylam=$longtitudeEksi3&maxboylam=$longtitudeArti3&min=2";
-    var url = 'https://turkiyedepremapi.herokuapp.com/api?min=2.0';
+
+    int enlemEksi2 =int.parse(enlem)-2;
+    int enlemArti2 =int.parse(enlem)+2;
+
+    int longtitudeEksi2 =int.parse(boylam)-2;
+    int longtitudeArti2 =int.parse(boylam)+2;
+
+
+
+
+    var enlemliboylamli ="https://turkiyedepremapi.herokuapp.com/api?minenlem=$enlemEksi2.$enlemDigit&maxenlem=$enlemArti2.$enlemDigit&minboylam=$longtitudeEksi2.$boylamDigit&maxboylam=$longtitudeArti2.$boylamDigit&min=2";
+    var url = 'https://turkiyedepremapi.herokuapp.com/api';
 
 
     var response = await http.get(
-      Uri.parse(enlemliboylamli),
+      Uri.parse(url),
     );
 
     List text = jsonDecode(response.body);
@@ -49,12 +63,13 @@ class _DepremapiState extends State<Depremapi> {
 
     if(text.length!=0){
 print(enlem);
+print(Kordinat);
+print('$enlemDigit $boylamDigit');
       print(boylam);
-      print(konum);
-      print(longtitudeEksi3);
-      print(longtitudeArti3);
+      print(longtitudeEksi2);
+      print(longtitudeArti2);
       print("sa");
-      myToast('DEPREM MEYDANA GELDİ');
+      //myToast('DEPREM MEYDANA GELDİ');
     }
     return json.decode(response.body);
     /*List text = jsonDecode(response.body);
@@ -94,7 +109,13 @@ print(enlem);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(floatingActionButton: FloatingActionButton(backgroundColor: Colors.amber[900],
+      child: Icon(Icons.location_on_rounded,size: 50,),heroTag: "Size yakın depremleri görmek için tıklayınız.",
+      onPressed: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context) => YakinDepremApi(),),);
+        debugPrint('Clicked FloatingActionButton Button');
+      },
+    ),
       backgroundColor: Colors.transparent,
       extendBodyBehindAppBar: true,
       appBar: AppBar(

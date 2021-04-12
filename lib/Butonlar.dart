@@ -128,12 +128,24 @@ class _ButonlarState extends State<Butonlar> {
     text.forEach((element) {
       var a = element.toString();
       dynamic intValue = int.parse(a.replaceAll(RegExp('[^0-9]'), ''));
+
+
+      dynamic konumKord = int.parse(LOCA.replaceAll(RegExp('[^0-9]'), ''));
+
+
+      String konum = konumKord.toString();
+
+      var Koordinat = konum.substring(0,2)+"."+konum.substring(2,8)+", "+konum.substring(9,11)+"."+konum.substring(11);
+
       print(intValue);
 
       String guvende =
-          "Merhaba, sizi yakını olarak ekleyen ${finalisim.toUpperCase()} ${finalsoyisim.toUpperCase()} güvende olduğunu belirtti. Kordinatları: $konum";
+          "Merhaba, sizi yakını olarak ekleyen ${finalisim.toUpperCase()} ${finalsoyisim.toUpperCase()} güvende olduğunu belirtti. Koordinatları: $Koordinat";
       String yardimmesaj =
-          "Sizi yakını olarak ekleyen ${finalisim.toUpperCase()} ${finalsoyisim.toUpperCase()} TEHLİKEDE olduğunu belirtti. Kordinatları: $konum";
+          "Sizi yakını olarak ekleyen ${finalisim.toUpperCase()} ${finalsoyisim.toUpperCase()} TEHLİKEDE olduğunu belirtti. Koordinatları: $Koordinat";
+
+
+      print(guvende);
       telephony.sendSms(
           to: "+90$intValue", message: yardim ? yardimmesaj : guvende);
     }
