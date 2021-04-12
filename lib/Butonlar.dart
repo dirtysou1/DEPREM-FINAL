@@ -468,7 +468,9 @@ class _ButonlarState extends State<Butonlar> {
               child: FlatButton(
                 onPressed: () async {
                   yardim = false;
-                  NumaraCek();
+
+                  Guvendemi = true;
+                  //NumaraCek();
 
                   yardimSil();
 
@@ -491,7 +493,7 @@ class _ButonlarState extends State<Butonlar> {
               child: FlatButton(
                 onPressed: () async {
                   yardim = true;
-                  //NumaraCek();
+
 
                   VolumeWatcher.setVolume(maxVolume); //sesi maximuma çıkarır
                   final SharedPreferences sharedPreferences =
@@ -513,8 +515,10 @@ class _ButonlarState extends State<Butonlar> {
                   //konumu alır
                   // ignore: non_constant_identifier_names
                   final LOC = (await loca1.location.getLocation()).toString();
-                  sharedPreferences.setString('Location', LOC);
-
+                  dynamic intValue = int.parse(LOC.replaceAll(RegExp('[^0-9]'), ''));
+                  String konum = intValue.toString();
+                  var Kordinat = konum.substring(0,2)+"."+konum.substring(2,8)+","+konum.substring(9,11)+"."+konum.substring(11);
+                  sharedPreferences.setString('Location', Kordinat);
                   print(LOC);
 
                   //popup mesajını ekranda gösterir

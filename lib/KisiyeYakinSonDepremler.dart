@@ -111,7 +111,7 @@ class _YakinDepremApiState extends State<YakinDepremApi> {
   Widget build(BuildContext context) {
     return Scaffold(floatingActionButton: FloatingActionButton(backgroundColor: Colors.red,
       onPressed: (){Navigator.of(context).push(MaterialPageRoute(
-          builder: (BuildContext context) => Depremapi()));
+          builder: (BuildContext context) => MyStatefulWidget()));
 
       },
       child: Icon(Icons.arrow_back),),floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

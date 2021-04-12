@@ -24,11 +24,7 @@ class User{
 
 }
 
-class UserData{
-  getUserData() async{
 
-  }
-}
 
 class LoginScreen extends StatefulWidget {
   @override
